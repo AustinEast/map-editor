@@ -1,6 +1,7 @@
 package;
 
 import flixel.util.FlxSave;
+import util.FileUtil;
 import zerolib.managers.ZControlsManager;
 
 
@@ -13,6 +14,8 @@ class Reg
 {
 	// Relative path from the project root to your levels directory
 	public static var levels_path:String = "assets/levels";
+
+	public static var current_level:Level;
 
 	public static var c:ZControlsManager;
 
