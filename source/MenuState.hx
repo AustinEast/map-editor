@@ -9,6 +9,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import sys.FileSystem;
+import sys.io.File;
 
 import menu.MenuText;
 import util.Bindings;
@@ -40,7 +42,7 @@ class MenuState extends FlxState
 
 		var edit = new MenuText(0, 0,"Edit",24);
 		edit.callback = function() {
-			
+			trace(FileSystem.readDirectory(FileSystem.absolutePath(Reg.levels_path)));
 		}
 		menu.add(edit);
 

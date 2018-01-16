@@ -31,13 +31,13 @@ typedef Layer = {
 class FileUtil {
 
     public static function init () {
-        if (!FileSystem.exists(Reg.levels_path)) {
-            FileSystem.createDirectory(Reg.levels_path);
+        if (!FileSystem.exists(FileSystem.absolutePath(Reg.levels_path)) {
+            FileSystem.createDirectory(FileSystem.absolutePath(Reg.levels_path));
         }
     }
 
     public static function loadLevel (fileName:String):Level {
-        var json = File.getContent(Path.join([Reg.levels_path, fileName, '.json');
+        var json = File.getContent(Path.join(FileSystem.absolutePath(Reg.levels_path), fileName, '.json');
         var level:Level = Json.parse(json);
         return level;
     }
@@ -46,7 +46,8 @@ class FileUtil {
         
     }
 
-    public static function listLevels (dir:String) {
-        
+    // TODO: list level by name defined in map
+    public static function listLevels (dir:String):Array<String> {
+        return FileSystem.readDirectory(FileSystem.absolutePath(Reg.levels_path));
     }
 }
