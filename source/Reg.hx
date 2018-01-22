@@ -13,7 +13,7 @@ import zerolib.managers.ZControlsManager;
 class Reg
 {
 	// Relative path from the project root to your levels directory
-	public static var levels_path:String = "assets/levels";
+	//public static var levels_path:String = "assets/levels";
 
 	public static var current_level:Level;
 

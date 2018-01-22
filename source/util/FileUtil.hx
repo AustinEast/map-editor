@@ -4,6 +4,8 @@ import haxe.Json;
 import haxe.io.Path;
 import flixel.math.FlxPoint;
 
+import zerolib.math.ZArrayUtils;
+
 #if flash
 import flash.display.Loader;
 import flash.display.LoaderInfo;
@@ -22,46 +24,72 @@ import systools.Dialogs;
 
 typedef Level = {
     var name:String;
-    var layers:Array<Layer>;
-    var width:Float;
-    var height:Float;
+    var collision:Layer;
+    var fg:Array<Layer>;
+    var bg:Array<Layer>;
+    var widthInTiles:Int;
+    var heightInTiles:Int;
 }
 
 typedef Layer = {
     var name:String;
-    var data:String;
-    var tileset:String;
-    var tileWidth:Float;
-    var tileHeight:Float;
+    var data:Array<Int>;
+    var tileSet:String;
+    var tileWidth:Int;
+    var tileHeight:Int;
     var scrollFactor:FlxPoint;
 }
 
 class FileUtil {
 
     public static var current_level:Level;
-    public static var current_path:String;
+    public static var levels_dir:String = "assets/levels";
 
     public static function init ():Void {
-        if (!FileSystem.exists(FileSystem.absolutePath(Reg.levels_path))) {
-            FileSystem.createDirectory(FileSystem.absolutePath(Reg.levels_path));
+        if (!FileSystem.exists(FileSystem.absolutePath(levels_dir))) {
+            FileSystem.createDirectory(FileSystem.absolutePath(levels_dir));
         }
     }
 
-    public static function newLevel () {
-        
+    public static function newLevel (name:String, widthInTiles:Int, heightInTiles:Int, tileWidth:Int, tileHeight:Int):Level {
+
+        var collisionLayer:Layer = {
+            "name": "Collision",
+            "data": ZArrayUtils.make_1D_array(widthInTiles, heightInTiles),
+            "tileSet": "",
+            "tileWidth": tileWidth,
+            "tileHeight": tileHeight,
+            "scrollFactor": FlxPoint.get()
+        }
+
+        var level:Level = {
+            "name": name,
+            "collision": collisionLayer,
+            "fg": [],
+            "bg": [],
+            "widthInTiles": widthInTiles,
+            "heightInTiles": heightInTiles
+        }
+
+        return level;
     }
 
-    public static function loadLevel ():Void {
+    public static function loadLevelNativeDialog ():Void {
         _showFileDialog();
     }
 
     public static function saveLevel (level:Level):Void {
         
     }
+    
+    // TODO: implement relative bool
+    public static function listDir (path:String, ?relative:Bool):Array<String> {
+        return FileSystem.readDirectory(path);
+    }
 
     // TODO: list level by name defined in map
     public static function listLevels ():Array<String> {
-        return FileSystem.readDirectory(FileSystem.absolutePath(Reg.levels_path));
+        return listDir(FileSystem.absolutePath(levels_dir));
     }
     
     private static function _showFileDialog():Void
@@ -89,8 +117,8 @@ class FileUtil {
 		}
 	}
 
-    private static function _setLevel(json:String):Void {
-        current_path = json;
+    private static function _setLevel(json:String):Level {
         current_level = Json.parse(File.getContent(json));
+        return current_level;
     }
 }

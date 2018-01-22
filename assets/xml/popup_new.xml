@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+    <include id="_globals"/>
+
+    <sprite id="black" x="0" y="0" width="100%" height="100%" color="0x88000000"/>
+
+    <chrome id="back" width="70%" height="50%" center_x="true" center_y="true"/>
+
+    <text id="title" x="0" y="5" width="back.width" text="Create New Level" align="center">
+		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <!--Name Field-->
+
+    <text id="name_text" x="5" y="32" width="32" text="Name">
+		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="name" use_def="input" x="5" y="32" width="back.width-64">
+        <anchor x="name_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <!--Tile Width/Height Fields-->
+
+    <text id="tile_width_text" x="5" y="64" width="58" text="Tile Width">
+		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="tile_width" use_def="input" x="5" y="64" width="32" filter="num">
+        <anchor x="tile_width_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <text id="tile_height_text" x="5" y="64" width="58" text="Tile Height">
+		<anchor x="tile_width.right" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="tile_height" use_def="input" x="5" y="64" width="32" filter="num">
+        <anchor x="tile_height_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <!--Width/Height in Tiles Fields-->
+
+    <text id="width_in_tiles_text" x="5" y="96" width="74" text="Width In Tiles">
+		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="width_in_tiles" use_def="input" x="5" y="96" width="32" filter="num">
+        <anchor x="width_in_tiles_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <text id="height_in_tiles_text" x="5" y="96" width="74" text="Height In Tiles">
+		<anchor x="width_in_tiles.right" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="height_in_tiles" use_def="input" x="5" y="96" width="32" filter="num">
+        <anchor x="height_in_tiles_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <button id="btn0" y="-5" label="Create">
+		<anchor y="back.bottom" y-flush="bottom"/>
+		<param type="int" value="0"/>		
+	</button>
+	
+	<button id="btn1" label="Cancel">
+		<anchor y="btn0.top" y-flush="top"/>
+		<param type="int" value="1"/>
+	</button>
+
+    <align axis="horizontal" spacing="10" resize="true">
+        <bounds left="back.left+10" right="back.right-10"/>
+        <objects value="btn0,btn1"/>
+    </align>
+
+</data>
