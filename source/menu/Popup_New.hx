@@ -3,6 +3,8 @@ package menu;
 import flixel.addons.ui.FlxUIPopup;
 import flixel.addons.ui.FlxUI;
 
+import util.FileUtil;
+
 class Popup_New extends FlxUIPopup
 {
 	public override function create():Void
@@ -26,6 +28,13 @@ class Popup_New extends FlxUIPopup
 	}
 
 	private function create_level():Void {
-		trace(_ui.getFlxText("name").text);
+		FileUtil.newLevel(
+			_ui.getFlxText("name").text,
+			Std.parseInt(_ui.getFlxText("width_in_tiles").text),
+			Std.parseInt(_ui.getFlxText("height_in_tiles").text),
+			Std.parseInt(_ui.getFlxText("tile_width").text),
+			Std.parseInt(_ui.getFlxText("tile_height").text)
+		);
+		close();
 	}
 }

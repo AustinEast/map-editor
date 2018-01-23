@@ -35,6 +35,8 @@ class TopNav extends FlxUISubState
 						//case "back": FlxG.switchState(new State_Title());
 						case "new":var popup:Popup_New = new Popup_New(); //create the popup
 									 openSubState(popup);				  //show the popup
+						case "load": FileUtil.loadLevel();
+						case "save": FileUtil.saveCurrentLevel();
 						case "quit": System.exit(0);			
 					}
 			}

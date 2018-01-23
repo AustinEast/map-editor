@@ -9,11 +9,8 @@ import zerolib.ZState;
 import zerolib.managers.ZControlsManager;
 
 
-class App extends ZState
+class DebugState extends ZState
 {
-
-	
-
 	override public function create():Void
 	{
 		super.create();

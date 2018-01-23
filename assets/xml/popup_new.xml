@@ -21,31 +21,13 @@
         <anchor x="name_text.right" x-flush="left" y="back.top" y-flush="top"/>
     </input_text>
 
-    <!--Tile Width/Height Fields-->
-
-    <text id="tile_width_text" x="5" y="64" width="58" text="Tile Width">
-		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
-	</text>
-
-    <input_text id="tile_width" use_def="input" x="5" y="64" width="32" filter="num">
-        <anchor x="tile_width_text.right" x-flush="left" y="back.top" y-flush="top"/>
-    </input_text>
-
-    <text id="tile_height_text" x="5" y="64" width="58" text="Tile Height">
-		<anchor x="tile_width.right" x-flush="left" y="back.top" y-flush="top"/>		
-	</text>
-
-    <input_text id="tile_height" use_def="input" x="5" y="64" width="32" filter="num">
-        <anchor x="tile_height_text.right" x-flush="left" y="back.top" y-flush="top"/>
-    </input_text>
-
     <!--Width/Height in Tiles Fields-->
 
     <text id="width_in_tiles_text" x="5" y="96" width="74" text="Width In Tiles">
 		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
 	</text>
 
-    <input_text id="width_in_tiles" use_def="input" x="5" y="96" width="32" filter="num">
+    <input_text id="width_in_tiles" use_def="input" x="5" y="96" width="32" filter="num" text="10">
         <anchor x="width_in_tiles_text.right" x-flush="left" y="back.top" y-flush="top"/>
     </input_text>
 
@@ -53,8 +35,26 @@
 		<anchor x="width_in_tiles.right" x-flush="left" y="back.top" y-flush="top"/>		
 	</text>
 
-    <input_text id="height_in_tiles" use_def="input" x="5" y="96" width="32" filter="num">
+    <input_text id="height_in_tiles" use_def="input" x="5" y="96" width="32" filter="num" text="10">
         <anchor x="height_in_tiles_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <!--Tile Width/Height Fields-->
+
+    <text id="tile_width_text" x="5" y="64" width="58" text="Tile Width">
+		<anchor x="back.left" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="tile_width" use_def="input" x="5" y="64" width="32" filter="num" text="16">
+        <anchor x="tile_width_text.right" x-flush="left" y="back.top" y-flush="top"/>
+    </input_text>
+
+    <text id="tile_height_text" x="5" y="64" width="58" text="Tile Height">
+		<anchor x="tile_width.right" x-flush="left" y="back.top" y-flush="top"/>		
+	</text>
+
+    <input_text id="tile_height" use_def="input" x="5" y="64" width="32" filter="num" text="16">
+        <anchor x="tile_height_text.right" x-flush="left" y="back.top" y-flush="top"/>
     </input_text>
 
     <button id="btn0" y="-5" label="Create">

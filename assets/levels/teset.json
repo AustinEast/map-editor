@@ -1,0 +1,20 @@
+{
+    "heightInTiles": 0,
+    "widthInTiles": 0,
+    "collision": {
+        "scrollFactor": {
+            "x": 0,
+            "y": 0,
+            "_weak": false,
+            "_inPool": false
+        },
+        "data": [],
+        "tileSet": "",
+        "name": "Collision",
+        "tileWidth": 0,
+        "tileHeight": 0
+    },
+    "bg": [],
+    "fg": [],
+    "name": "1dsa"
+}
