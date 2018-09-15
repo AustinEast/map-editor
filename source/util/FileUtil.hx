@@ -26,8 +26,8 @@ import systools.Dialogs;
 typedef Level = {
     var name:String;
     var collision:Layer;
-    var fg:Array<Layer>;
-    var bg:Array<Layer>;
+    var layers:Array<Layer>;
+    var objects:Array<Object>;
     var widthInTiles:Int;
     var heightInTiles:Int;
     var tileWidth:Int;
@@ -38,7 +38,14 @@ typedef Layer = {
     var name:String;
     var data:Array<Int>;
     var tileSet:String;
+    var autoTile:Bool;
     var scrollFactor:FlxPoint;
+}
+
+typedef Object = {
+    var className:String;
+    var img:String;
+    var pos:FlxPoint;
 }
 
 class FileUtil {
@@ -57,15 +64,16 @@ class FileUtil {
         var collisionLayer:Layer = {
             "name": "Collision",
             "data": ZArrayUtils.make_1D_array(widthInTiles, heightInTiles),
-            "tileSet": "",
+            "tileSet": "assets/tiles/colortiles.png",
+            "autoTile": false,
             "scrollFactor": FlxPoint.get()
         }
 
         var level:Level = {
             "name": name,
             "collision": collisionLayer,
-            "fg": [],
-            "bg": [],
+            "layers": [],
+            "objects": [],
             "widthInTiles": widthInTiles,
             "heightInTiles": heightInTiles,
             "tileWidth": tileWidth,
@@ -88,7 +96,13 @@ class FileUtil {
             filters
         );
 
-        _onSelect(result);
+        if (result != null && result.length > 0) {
+            var level = _parseLevel(result[0]);
+            FlxG.log.notice("Loading " + level.name + " from " + result);
+            _setLevel(level);
+		} else {
+            FlxG.log.error("Error loading Level.");
+        }
     }
 
     public static function saveCurrentLevel():Void {
@@ -128,20 +142,29 @@ class FileUtil {
         return listDir(FileSystem.absolutePath(levels_dir));
     }
 
-    private static function _onSelect(arr:Array<String>):Void
-	{
-		if (arr != null && arr.length > 0)
-		{
-            _setLevel(_parseLevel(arr[0]));
-		}
-	}
+    public static function loadTileset ():String {
+
+        var filters: FILEFILTERS =
+        {
+            count: 1,
+            descriptions: ["PNG files"],
+            extensions: ["*.png"]
+        };
+        var result:Array<String> = Dialogs.openFile(
+            "Load Tileset",
+            "Please select a tileset PNG from your assets/tiles directory",
+            filters
+        );
+
+        return "";
+    }
 
     private static function _parseLevel(json:String):Level {
         return Json.parse(File.getContent(json));
     }
 
     private static function _stringifyLevel(level:Level):String {
-        return Json.stringify(level, null, "    ");
+        return Json.stringify(level, null);
     }
 
     private static function _setLevel(level:Level):Level {

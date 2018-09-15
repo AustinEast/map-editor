@@ -7,8 +7,6 @@ import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 using flixel.util.FlxSpriteUtil;
 
-import zerolib.util.ZMenu;
-
 class Button extends MenuItem
 {
     public var text:FlxText;

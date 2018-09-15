@@ -11,6 +11,7 @@ import zerolib.managers.ZControlsManager;
 
 class DebugState extends ZState
 {
+
 	override public function create():Void
 	{
 		super.create();

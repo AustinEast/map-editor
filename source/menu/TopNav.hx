@@ -8,8 +8,6 @@ import flixel.addons.ui.FlxUISubState;
 import util.FileUtil;
 import menu.*;
 
-import zerolib.ZState;
-
 class TopNav extends FlxUISubState
 {
 	override public function create() 
